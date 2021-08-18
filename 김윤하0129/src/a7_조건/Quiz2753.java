@@ -11,10 +11,8 @@ public class Quiz2753 {
 		int result;
 		
 		if (year%4==0 && year%100!=0 || year%400==0) {
-			result = 1;
 			System.out.println("¿±≥‚¿‘¥œ¥Ÿ.!!");
 		}else {
-			result = 0;
 			System.out.println("¿±≥‚¿Ã æ∆¥’¥œ¥Ÿ.!!");
 		}
 		

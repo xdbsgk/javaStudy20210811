@@ -22,7 +22,7 @@ public class OverloadingEx {							// 같은 사람인데 서로 다른 동작을 함. 재료를 
 		return result;
 	}
 	
-	public double mul(int num1, double num2) {				// 형 변환 사용하는 곱셈. double => int
+	public double mul(int num1, double num2) {			// 형 변환 사용하는 곱셈. double => int
 //		int num2_2 = (int)num2;
 		double result = num1 * num2;
 		return result;

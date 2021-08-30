@@ -3,22 +3,26 @@ package b10_클래스;
 public class StudentTest {
 
 	public static void main(String[] args) {
-		Student kim = new Student();				// 생성자 -> 클래스명과 같다.
-				// kim, lee => 호실 번호라고 생각.
-		kim.name = "김윤하";
-		kim.schoolName = "부산대학교";
-		kim.year = "3";
+		Student kim = new Student("김윤하","부산대학교", 3);
+		Student lee = new Student("이지원", "학교", 1);
+		Student park = new Student("박호훈", "코리아it", 3);
 		
+//		kim.name = "김준일";	//	.은 해당 메모리 주소값을 참조한다
 		kim.showInfo();
+		kim.getFreebies();
 		
-		Student lee = new Student();
-		// 메모리 주소가 반환형이기 때문에 리턴값이 없음?
-//		lee.name = "이효원";
-				
-//		lee.showInfo();
+		lee.showInfo();
+		lee.getFreebies();
 		
-		System.out.println(kim);	// 메모리 주소 출력
-//		System.out.println(lee);	// 메모리 주소 출력
+		park.showInfo();
+		park.getFreebies();
+		
+//		Integer i = new Integer(100);
+//		System.out.println(i.hashCode());
+		
+		System.out.println(kim.hashCode());
+		
+
 
 	}
 

@@ -25,13 +25,14 @@ public class ArrayEx1 {
 */
 		
 		
-	// 배열 선언 및 대입 방법
+// 배열 선언 및 대입 방법
 	
-	// 1. 
+// 1. 
 	int[] num = new int[100];
 	
 //	num = new int[] {10, 20, 30, 40, 50};				// 이 문법은 X
-	for (int i=0; i<100; i++) {
+	
+	for (int i=0; i<100; i++) {							// 0부터 99까지의 칸 존재. 그 안에 10씩 곱해서 넣어주는 
 		num[i] = i * 10;
 	}
 	for (int i=0; i<100; i++) {
@@ -44,9 +45,9 @@ public class ArrayEx1 {
 //	num[3] = 40;
 //	num[4] = 50;
 	
-	// 2. 장점: 
+// 2. 장점: 
 	int[] arr_i = new int[] {10, 20, 30, 40, 50};		// 같은
-	int[] arr_i2 = {10, 20, 30, 40, 50};				// 표현
+	int[] arr_i2 = {10, 20, 30, 40, 50};				// 표현 (맞춤 제작)
 	
 	for(int i=0; i<5; i++) {
 		System.out.println(num[i]);

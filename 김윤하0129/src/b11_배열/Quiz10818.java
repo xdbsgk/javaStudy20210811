@@ -9,8 +9,7 @@ public class Quiz10818 {
 		Scanner in = new Scanner(System.in);
 		
 		int nCount = in.nextInt();
-		int[] nArr;
-		nArr = new int[nCount];
+		int[] nArr = new int[nCount];
 
 		int maxNum = -1000001;
 		int minNum = 1000001;

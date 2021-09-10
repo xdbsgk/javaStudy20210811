@@ -19,6 +19,11 @@ public class Animals {
 		a[1] = new Tigar();
 		a[2] = new Eagle();
 		
+		for (int i=0; i<a.length; i++) {
+			Animal ani = a[i];
+			ani.move();		// a[i].move(); 와 같은 코드.
+		}
+		
 		// foreach (: 기준, 세미콜론 X) -> 베열 또는 array List에서 주로 사용.
 		for(Animal ani : a) {
 			ani.move();		// 배열 안에 있는 것들을 하나씩 출력하게 된다.

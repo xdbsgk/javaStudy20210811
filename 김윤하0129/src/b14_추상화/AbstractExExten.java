@@ -1,4 +1,4 @@
-package b14_추상화;
+ package b14_추상화;
 
 abstract class AbstractEx3Exten extends AbstractEx {
 	// 사용 예시

@@ -5,20 +5,20 @@ import java.util.Scanner;
 public class LoginTest {
 	public static void main(String[] args) {
 		LoginDao loginDao = new LoginDaoImpl();
-		
+
 		Scanner input = new Scanner(System.in);
-		
+
 		while(true) {
 			System.out.println("=====로그인 시스템=====");
-			
+
 			System.out.print("아이디: ");
 			String id = input.nextLine();
-			
+
 			System.out.print("비밀번호: ");
 			String password = input.nextLine();
-			
+
 			int flag = loginDao.login(id, password);
-			
+
 			if (flag == 0) {
 				System.out.println("존재하지 않는 아이디입니다.");
 			} else if (flag == 1) {
@@ -30,7 +30,7 @@ public class LoginTest {
 				System.out.println("데이터 베이스 오류.");
 			}
 		}
-		
-		
+
+
 	}
 }

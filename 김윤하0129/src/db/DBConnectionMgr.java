@@ -57,7 +57,7 @@ public class DBConnectionMgr {
     /** Use this method to set the maximum number of open connections before
      unused connections are closed.
      */
-
+    
     public static DBConnectionMgr getInstance() {
         if (instance == null) {
             synchronized (DBConnectionMgr.class) {

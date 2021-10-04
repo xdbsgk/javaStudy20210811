@@ -25,7 +25,11 @@ public class LoginServiceImpl implements LoginService {
 		@Override
 		public int loginLogic(String id, String pwd) {		
 			return loginDao.login(id, pwd);
-	}		
+		}
+		
+		
+		
+		
 		
 
 	

@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import b22_윈도우빌더.service.LoginService;
+import b22_윈도우빌더.service.LoginServiceImpl;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -48,6 +52,8 @@ public class User extends JFrame {
 	 * Create the frame.
 	 */
 	public User() {
+
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// 프레임이 열리는 위치
 		setBounds(100, 100, 450, 300);

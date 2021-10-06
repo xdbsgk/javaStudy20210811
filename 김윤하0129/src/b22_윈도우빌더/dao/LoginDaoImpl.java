@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import b22_윈도우빌더.dto.UserDto;
 import db.DBConnectionMgr;
 
 public class LoginDaoImpl implements LoginDao{
@@ -90,6 +91,49 @@ public class LoginDaoImpl implements LoginDao{
 
 		return name;
 
+	}
+
+	@Override
+	public UserDto getUserDto(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String name = null;
+
+		// 예외처리
+		try {
+			con = pool.getConnection();
+			// 모든 값들을 가져온다.
+			sql = "select * from user_mst where user_id = ?";
+			// sql을 mariadb가 알아듣도록 변환시켜줌 (prepareStatement)
+			// prepareStatement가 ? 자리에 password와 id를 set해준다.
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			// 쿼리를 실행해 결과를 가져옴 (ctrl + shift + F9)
+			rs = pstmt.executeQuery();
+
+			// 커서가 BOF에서 다음으로 이동한다.
+			rs.next();
+			UserDto userDto = new UserDto();
+			userDto.setUser_id(rs.getString(1));
+			userDto.setUser_pwd(rs.getString(2));
+			userDto.setUser_name(rs.getString(3));
+			userDto.setUser_phone(rs.getString(4));
+			userDto.setUser_email(rs.getString(5));
+			userDto.setUser_gender(rs.getInt(6));
+			
+			return userDto;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// 마지막으로 튜브를 반납하는 작업. freeConnection이 정의되어있기 때문에 객체처리로 간단하게 정리한다.
+			pool.freeConnection(con, pstmt, rs);
+		}
+
+		return null;
 	}
 
 

@@ -63,7 +63,7 @@ public class SignUpServiceImpl implements SignUpService {
 			msg = "성별이 선택되지 않았습니다.";
 		} else {
 			// 다음 단계로 넘어감
-			msg = "vlaue is not null";
+			msg = "value is not null";
 		}
 		return msg;
 	}
@@ -77,7 +77,13 @@ public class SignUpServiceImpl implements SignUpService {
 		} else {
 			msg = "비밀번호가 일치하지 않습니다,\n 다시 입력하세요.";
 		}
-		return null;
+		return msg;
+	}
+
+	@Override
+	public boolean signUp(String[] values) {
+		
+		return signUpDao.signUp(values);
 	}
 	
 	

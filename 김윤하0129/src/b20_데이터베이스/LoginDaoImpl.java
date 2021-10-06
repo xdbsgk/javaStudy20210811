@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import b22_윈도우빌더.dto.UserDto;
 import db.DBConnectionMgr;
 
 public class LoginDaoImpl implements LoginDao{
@@ -90,6 +91,11 @@ public class LoginDaoImpl implements LoginDao{
 
 		return name;
 
+	}
+
+	@Override
+	public UserDto getUserDto(String id) {
+		return null;
 	}
 
 

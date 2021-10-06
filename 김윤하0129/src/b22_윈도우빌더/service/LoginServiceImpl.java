@@ -1,6 +1,7 @@
 package b22_윈도우빌더.service;
 
 import b20_데이터베이스.LoginDao;
+import b22_윈도우빌더.dto.UserDto;
 
 public class LoginServiceImpl implements LoginService {
 	
@@ -25,6 +26,12 @@ public class LoginServiceImpl implements LoginService {
 		@Override
 		public int loginLogic(String id, String pwd) {		
 			return loginDao.login(id, pwd);
+		}
+
+
+		@Override
+		public UserDto getUserDto(String id) {
+			return loginDao.getUserDto(id);
 		}
 		
 		

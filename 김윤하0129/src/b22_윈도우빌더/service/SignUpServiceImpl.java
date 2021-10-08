@@ -13,7 +13,7 @@ public class SignUpServiceImpl implements SignUpService {
 	
 	@Override
 	public boolean isEmptyId(String id) {
-		return id.length() !=0 ? true : false;
+		return id.length() != 0 ? true : false;
 	}
 	
 	@Override

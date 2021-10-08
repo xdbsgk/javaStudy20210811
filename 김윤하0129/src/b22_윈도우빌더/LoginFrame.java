@@ -17,6 +17,8 @@ import javax.swing.JPasswordField;
 
 import b22_윈도우빌더.dao.DeleteUserDao;
 import b22_윈도우빌더.dao.DeleteUserDaoImpl;
+import b22_윈도우빌더.dao.UpdateUserDao;
+import b22_윈도우빌더.dao.UpdateUserDaoImpl;
 import b22_윈도우빌더.dto.UserDto;
 import b22_윈도우빌더.service.LoginService;
 import b22_윈도우빌더.service.LoginServiceImpl;
@@ -29,6 +31,7 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 public class LoginFrame extends JFrame {
 	
@@ -47,10 +50,14 @@ public class LoginFrame extends JFrame {
 	private JTextField email_tf;
 	private JLabel welcomeMsg;
 	private String[] gender_list = {"선택", "남성", "여성", "선택하지 않음"};
+	private JTextField new_pwd_tf;
+	private JTextField new_repwd_tf;
 	
 	private LoginService loginService;
 	private SignUpService signUpService;
 	private DeleteUserDao deleteUserDao;
+	private UpdateUserDao updateUserDao;
+
 	
 
 	public static void main(String[] args) {
@@ -75,6 +82,8 @@ public class LoginFrame extends JFrame {
 		loginService = new LoginServiceImpl();
 		signUpService = new SignUpServiceImpl();		
 		deleteUserDao = new DeleteUserDaoImpl();
+		updateUserDao = new UpdateUserDaoImpl();
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 703, 505);
@@ -114,6 +123,7 @@ public class LoginFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// 로그인 버튼 누르면 데이터가 맞는지 확인하기
 				int flag = loginService.loginTextCheck(login_id_tf.getText(), login_pw_tf.getText());
+				System.out.println("test");
 				if (flag != 2) {
 					String msg = null;
 					if (flag == 0) {
@@ -350,6 +360,7 @@ public class LoginFrame extends JFrame {
 		index_pan.add(mypage_btn);
 		
 		JPanel mypage_pan = new JPanel();
+		mypage_pan.setBackground(Color.PINK);
 		mainCardPan.add(mypage_pan, "mypage_pan");
 		mypage_pan.setLayout(null);
 		
@@ -368,5 +379,88 @@ public class LoginFrame extends JFrame {
 		});
 		user_drop_btn.setBounds(568, 423, 97, 23);
 		mypage_pan.add(user_drop_btn);
+		
+		JLabel lblNewLabel_3 = new JLabel("\uB9C8\uC774\uD398\uC774\uC9C0");
+		lblNewLabel_3.setBackground(Color.WHITE);
+		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 13));
+		lblNewLabel_3.setBounds(301, 33, 71, 15);
+		mypage_pan.add(lblNewLabel_3);
+		
+	
+		
+		JLabel lblNewLabel_4 = new JLabel("\uC0C8 \uBE44\uBC00\uBC88\uD638");
+		lblNewLabel_4.setBounds(459, 120, 97, 15);
+		mypage_pan.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("\uC0C8 \uBE44\uBC00\uBC88\uD638 \uD655\uC778");
+		lblNewLabel_4_1.setBounds(437, 159, 97, 15);
+		mypage_pan.add(lblNewLabel_4_1);
+		
+		new_pwd_tf = new JTextField();
+		new_pwd_tf.setBounds(536, 117, 116, 21);
+		new_pwd_tf.setEditable(false);
+		mypage_pan.add(new_pwd_tf);
+		new_pwd_tf.setColumns(10);
+		
+		new_repwd_tf = new JTextField();
+		new_repwd_tf.setBounds(536, 156, 116, 21);
+		new_repwd_tf.setEditable(false);
+		mypage_pan.add(new_repwd_tf);
+		new_repwd_tf.setColumns(10);
+		
+		JButton update_btn = new JButton("\uBCC0\uACBD \uC644\uB8CC");
+		update_btn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (new_pwd_tf.getText() == new_repwd_tf.getText()) {
+					boolean flag = updateUserDao.updatePassword(loginSession.getUser_id(), new_pwd_tf.getText());
+					if (flag == true) {
+						loginSession.setUser_pwd(new_pwd_tf.getText());
+						JOptionPane.showMessageDialog(null,  "비밀번호 변경 완료", "완료", JOptionPane.INFORMATION_MESSAGE);	
+						new_pwd_tf.setText("");
+						new_repwd_tf.setText("");
+						
+						new_pwd_tf.setEditable(false);
+						
+						new_repwd_tf.setEditable(false);
+						
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "비밀번호 확인", JOptionPane.WARNING_MESSAGE);					
+				}
+				
+			}
+		});
+		update_btn.setBounds(555, 187, 97, 23);
+		update_btn.setEnabled(false);
+		mypage_pan.add(update_btn);
+		
+		
+		JButton update_pwd_btn = new JButton("\uBE44\uBC00\uBC88\uD638 \uBCC0\uACBD");
+		update_pwd_btn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				while(true) {
+					String originPwd =  JOptionPane.showInputDialog(null, "기존의 비밀번호를 입력해 주세요.", "비밀번호 수정", JOptionPane.YES_NO_OPTION);
+					if (loginSession.getUser_pwd().equals(originPwd)) {
+						new_pwd_tf.setEditable(true);
+						new_repwd_tf.setEditable(true);
+						update_pwd_btn.setEnabled(true);
+						
+						break;
+					} else if (originPwd == null) {
+						break;
+					} else {
+						JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "비밀번호 오류", JOptionPane.ERROR_MESSAGE);
+						
+					}
+					
+				}
+				
+
+			}
+		});
+		update_pwd_btn.setBounds(426, 423, 130, 23);
+		mypage_pan.add(update_pwd_btn);
 	}
 }
